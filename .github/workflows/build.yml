@@ -1,0 +1,49 @@
+name: dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+        version:
+          description: 'WinBox Version'
+          required: true
+
+permissions:
+  packages: write
+  contents: read
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run Makefile
+      run: make clean all VER=${{ github.event.inputs.version }}
+    - name: Save Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build
+        path: |
+          *.deb
+          dist/
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: true
+        prerelease: true
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./WinBox-${{ github.event.inputs.version }}.deb
+        asset_name: WinBox-${{ github.event.inputs.version }}.deb
+        asset_content_type: application/vnd.debian.binary-package
