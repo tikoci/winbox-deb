@@ -1,4 +1,5 @@
 *.deb
 dist
+assets
 *.zip
 WinBox

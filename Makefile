@@ -10,7 +10,7 @@ WinBox_Linux.zip:
 	wget https://download.mikrotik.com/routeros/winbox/$(VER)/WinBox_Linux.zip
 
 WinBox: WinBox_Linux.zip
-	unzip -o Winbox_Linux.zip
+	unzip -o WinBox_Linux.zip
 
 metadata:
 	mkdir -p dist/DEBIAN
@@ -48,4 +48,4 @@ clean:
 	-rm WinBox
 	-rm *.zip
 	-rm -rf dist
-	-rm -rf assests
+	-rm -rf assets
