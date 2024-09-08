@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Run Makefile
-      run: make clean all VER=${{ github.event.inputs.version }}
+      run: make all VER=${{ github.event.inputs.version }}
     - name: Save Build Artifacts
       uses: actions/upload-artifact@v4
       with:

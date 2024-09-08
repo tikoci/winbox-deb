@@ -1,0 +1,4 @@
+*.deb
+dist
+*.zip
+WinBox
