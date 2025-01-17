@@ -3,7 +3,7 @@
 ## Download and Usage
 The Debian Package (`.deb`) is available under "Releases".  The `dpkg` tool, running a "root", can be used to install the package using the downloaded file, for example:
 ```
-sudo dpkg -i ~/Downloads/WinBox-4.0beta4.deb
+sudo dpkg -i ~/Downloads/WinBox-4.0beta16.deb
 ```
 Once installed, WinBox should be available to GNOME or KDE desktops, generally under "Applications" (location will vary depending on disto and window manager).
 
@@ -18,7 +18,7 @@ This project is really just a `Makefile` and GitHub action to run it.
 
 Inside the Makefile,
   * WinBox is download directly from Mikrotik, either
-      * using make variable "VER" e.g. `make all VER=4.0beta4`
+      * using make variable "VER" e.g. `make all VER=4.0beta16`
       * or, if VER is not provided to `make`, then a Mikrotik URL is used to determine the version
   * `DEBIAN/control` is created that describes the package
   * `WinBox.desktop` is created that is used by KDE and GNOME for Desktop integration
