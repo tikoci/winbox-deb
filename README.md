@@ -1,7 +1,7 @@
 # Debian Package for Mikrotik WinBox
 
 ## Download and Usage
-The Debian Package (`.deb`) is available under "Releases".  The `dpkg` tool, running a "root", can be used to install the package using the downloaded file, for example:
+The Debian Package (`.deb`) is available under "Releases".  The `dpkg` tool, running as "root", can be used to install the package using the downloaded file, for example:
 ```
 sudo dpkg -i ~/Downloads/WinBox-4.0beta16.deb
 ```
