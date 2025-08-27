@@ -1,4 +1,4 @@
-# Debian Package for Mikrotik WinBox
+# Debian Package for MikroTik WinBox
 
 ## Download and Usage
 The Debian Package (`.deb`) is available under "Releases".  The `dpkg` tool, running as "root", can be used to install the package using the downloaded file, for example:
@@ -17,19 +17,19 @@ sudo dkpg -r WinBox
 This project is really just a `Makefile` and GitHub action to run it.  
 
 Inside the Makefile,
-  * WinBox is download directly from Mikrotik, either
+  * WinBox is download directly from MikroTik, either
       * using make variable "VER" e.g. `make all VER=4.0beta16`
-      * or, if VER is not provided to `make`, then a Mikrotik URL is used to determine the version
+      * or, if VER is not provided to `make`, then a MikroTik URL is used to determine the version
   * `DEBIAN/control` is created that describes the package
   * `WinBox.desktop` is created that is used by KDE and GNOME for Desktop integration
-  *  Mikrotik's WinBox icon is converted to 48x48 (from 1024x1024) using `convert` (aka `magick convert`) per [Freedesktop Icon theme Spec](https://specifications.freedesktop.org/icon-theme-spec/latest/)
+  *  MikroTik's WinBox icon is converted to 48x48 (from 1024x1024) using `convert` (aka `magick convert`) per [Freedesktop Icon theme Spec](https://specifications.freedesktop.org/icon-theme-spec/latest/)
  
 The GitHub CI using a "workflow_dispatch" to manually start a release using a specific versions.  The GitHub workflow action will create a draft release automatically, but publishing the a release is manual process.
 
 
 > ## Disclaimers
-> **This site is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Mikrotik, Debian, or Ubuntu.**
-> While the code in this project is released under CC0 (see LICENSE),  **The WinBox application and associated files are subject to Mikrotik's Terms and Conditions**, see [MIKROTIKLS MIKROTIK SOFTWARE END-USER LICENCE AGREEMENT](https://mikrotik.com/downloadterms.html).
+> **This site is not affiliated, associated, authorized, endorsed by, or in any way officially connected with MikroTik, Debian, or Ubuntu.**
+> While the code in this project is released under CC0 (see LICENSE),  **The WinBox application and associated files are subject to MikroTik's Terms and Conditions**, see [MIKROTIKLS MikroTik SOFTWARE END-USER LICENCE AGREEMENT](https://mikrotik.com/downloadterms.html).
 > **Any trademarks and/or copyrights remain the property of their respective holders**, unless specifically noted otherwise.
 > Use of a term in this document should not be regarded as affecting the validity of any trademark or service mark. Naming of particular products or brands should not be seen as endorsements.
 > MikroTik is a trademarks of Mikrotikls SIA.
