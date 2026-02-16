@@ -1,9 +1,10 @@
 # Debian Package for MikroTik WinBox
 
 ## Download and Usage
-The Debian Package (`.deb`) is available under "Releases".  The `dpkg` tool, running as "root", can be used to install the package using the downloaded file, for example:
+The Debian Package (`.deb`) is available under [Releases](https://github.com/tikoci/winbox-deb/releases).  The `dpkg` tool, running as "root", can be used to install the package using the downloaded file, for example:
 ```
-sudo dpkg -i ~/Downloads/WinBox-4.0rc3.deb
+wget -P ~/Downloads https://github.com/tikoci/winbox-deb/releases/download/4.0.1/WinBox-4.0.1.deb 
+sudo dpkg -i ~/Downloads/WinBox-4.0.1.deb
 ```
 Once installed, WinBox should be available to GNOME or KDE desktops, generally under "Applications" (location will vary depending on disto and window manager).
 
