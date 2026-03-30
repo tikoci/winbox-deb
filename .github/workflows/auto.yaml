@@ -1,0 +1,57 @@
+name: Check for New WinBox Version
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 3,6"
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    name: Check New WinBox Version
+    outputs:
+      version: ${{ steps.get-version.outputs.version }}
+      exists: ${{ steps.has-release.outputs.release-exists }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Get latest WinBox version
+        id: get-version
+        run: |
+          WBVER=$(curl -s --max-time 10 --fail https://upgrade.mikrotik.com/routeros/winbox/LATEST.4)
+          [ -z "$WBVER" ] && echo "::error::Failed to get WinBox version" && exit 1
+          echo version=$WBVER >> $GITHUB_OUTPUT
+          echo "Latest WinBox version: $WBVER"
+      - name: Check if release already exists
+        id: has-release
+        uses: insightsengineering/release-existence-action@v1.0.0
+        with:
+          release-tag: ${{ steps.get-version.outputs.version }}
+      - name: Log Results
+        run: |
+          echo "Version: ${{ steps.get-version.outputs.version }}"
+          echo "Release exists: ${{ steps.has-release.outputs.release-exists }}"
+
+  build:
+    needs: check
+    if: ${{ needs.check.outputs.exists == 'false' }}
+    runs-on: ubuntu-latest
+    name: Trigger Build for ${{ needs.check.outputs.version }}
+    steps:
+      - name: Trigger build.yml for ${{ needs.check.outputs.version }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'build.yml',
+              ref: 'main',
+              inputs: {
+                version: '${{ needs.check.outputs.version }}'
+              }
+            })
