@@ -39,7 +39,7 @@ jobs:
         name: WinBox-${{ github.event.inputs.version }}.deb
         path: WinBox-${{ github.event.inputs.version }}.deb
     - name: Create Release
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@v1.14.0
       with:
         tag: ${{ github.event.inputs.version }}
         name: WinBox ${{ github.event.inputs.version }}
