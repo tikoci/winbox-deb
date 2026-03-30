@@ -7,7 +7,7 @@ all: build
   
 WinBox_Linux.zip:
 	echo $(VER) > VERSION
-	wget https://download.mikrotik.com/routeros/winbox/$(VER)/WinBox_Linux.zip
+	wget -nv https://download.mikrotik.com/routeros/winbox/$(VER)/WinBox_Linux.zip
 
 WinBox: WinBox_Linux.zip
 	unzip -o WinBox_Linux.zip
