@@ -3,6 +3,7 @@ name: Check for New WinBox Version
 on:
   workflow_dispatch:
   schedule:
+    # Runs at midnight UTC on Wednesdays (3) and Saturdays (6)
     - cron: "0 0 * * 3,6"
 
 permissions:
